@@ -1,18 +1,14 @@
 import React from 'react';
-import { Navigate, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import './App.css';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import NotFound from './pages/NotFound';
-import IsAuthenticated from './services/Autenticacao/auth';
+import Home from './pages/Home/home';
+import Login from './pages/Login/login';
+import NotFound from './pages/NotFound/notFound';
+import Produto from './pages/Produto/produto';
+import PrivateRoute from './services/PrivateRoute/PrivateRoute';
 
 function App() {
-  /* const [isAutenticado, setIsAutenticado] = useState(false);
 
-  function SetIsAutenticado(isAutenticado) {
-    setIsAutenticado(isAutenticado);
-  } */
-  
   // Faz logout do usuário removendo o token de autenticação do localStorage
   const logout = () => {
     localStorage.removeItem('email');
@@ -23,7 +19,8 @@ function App() {
   return (
     <Router>
         <Routes>
-            <Route exact path="/" element={false ? <Home /> : <Navigate to="/login" />} />
+            <Route exact path="/" element={<PrivateRoute><Home/></PrivateRoute> } />
+            <Route exact path="/produto" element={<PrivateRoute><Produto/></PrivateRoute>} />
             <Route exact path="/login" element={<Login/>} />
             <Route exact path="*" element={<NotFound/>} />
         </Routes>

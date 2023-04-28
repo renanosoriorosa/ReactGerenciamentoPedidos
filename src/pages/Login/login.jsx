@@ -2,15 +2,11 @@ import  {React, useState} from 'react';
 import './styles.css';
 import api from '../../services/api/api';
 import { useNavigate } from 'react-router-dom';
-import IsAuthenticated from './../../services/Autenticacao/auth';
 
 export default function Login(){
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navegate = useNavigate();
-
-    //const history =  useHistory();
 
     async function login(event){
         event.preventDefault();//evita o refresh da tela
@@ -26,11 +22,7 @@ export default function Login(){
             localStorage.setItem('token', response.data.message.accessToken);
             localStorage.setItem('expiration', response.data.message.expiresIn);
 
-             if(IsAuthenticated){
-                //navega
-                console.log("entrei");
-                navegate("/");
-            }
+            navegate("/");
         }
         catch(error){
             alert('falha ao logar '+ error);
