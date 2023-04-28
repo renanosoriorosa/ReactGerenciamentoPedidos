@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import './App.css';
 import Home from './pages/Home/home';
 import Login from './pages/Login/login';
 import NotFound from './pages/NotFound/notFound';
