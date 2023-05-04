@@ -1,9 +1,9 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import Home from './pages/Home/home';
+import Home from './pages/Home/Home';
 import Login from './pages/Login/login';
-import NotFound from './pages/NotFound/notFound';
-import Produto from './pages/Produto/produto';
+import NotFound from './pages/NotFound/NotFound';
+import Produto from './pages/Produto/Produto';
 import PrivateRoute from './services/PrivateRoute/PrivateRoute';
 
 function App() {
@@ -16,14 +16,16 @@ function App() {
   };
 
   return (
-    <Router>
-        <Routes>
+    <main>
+      <Router>
+          <Routes>
             <Route exact path="/" element={<PrivateRoute><Home/></PrivateRoute> } />
-            <Route exact path="/produto" element={<PrivateRoute><Produto/></PrivateRoute>} />
+            <Route exact path="/produto" element={<Produto/>} />
             <Route exact path="/login" element={<Login/>} />
             <Route exact path="*" element={<NotFound/>} />
         </Routes>
-    </Router>
+      </Router>
+    </main>
   );
 }
 

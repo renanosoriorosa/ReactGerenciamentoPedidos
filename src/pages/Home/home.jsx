@@ -1,7 +1,12 @@
 import  {React} from 'react';
 
 export default function Home(){
+    
     return (
-        <h1>Home</h1>
+        <>
+            <main className="content">
+                <h1>Home</h1>
+            </main>
+        </>
     );
 }
