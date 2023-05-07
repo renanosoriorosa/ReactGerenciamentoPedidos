@@ -25,38 +25,38 @@ export default function Login(){
     const theme = useTheme();
 
     async function login(event){
-        event.preventDefault();//evita o refresh da tela
+      event.preventDefault();//evita o refresh da tela
 
-        const data = {
-            email,
-            password
-        }
+      const data = {
+          email,
+          password
+      }
 
-        try{
-            const response = await api.post('v1/Autenticacao/Login', data);
-            localStorage.setItem('email', email);
-            localStorage.setItem('token', response.data.message.accessToken);
+      try{
+          const response = await api.post('v1/Autenticacao/Login', data);
+          localStorage.setItem('email', email);
+          localStorage.setItem('token', response.data.message.accessToken);
 
-            navegate("/");
-        }
-        catch(error){
-            if(error.response === undefined){
-              toogleMensagemErro("Ocorreu uma exception, contate o suporte!");
-            }else if(error.response.status === 400){
-              if(error.response.data.errors === undefined){
-                toogleMensagemErro(error.response.data.message);
-              }else{
-                if(error.response.data.errors.Email !== undefined){
-                  error.response.data.errors.Email.map((item) => 
-                  toogleMensagemErro(item))
-                }
-                if(error.response.data.errors.Password !== undefined){
-                  error.response.data.errors.Password.map((item) => 
-                  toogleMensagemErro(item))
-                }
-              }
+          navegate("/");
+      }
+      catch(error){
+        if(error.response === undefined){
+          toogleMensagemErro("Ocorreu uma exception, contate o suporte!");
+        }else if(error.response.status === 400){
+          if(error.response.data.errors === undefined){
+            toogleMensagemErro(error.response.data.message);
+          }else{
+            if(error.response.data.errors.Email !== undefined){
+              error.response.data.errors.Email.map((item) => 
+              toogleMensagemErro(item))
             }
+            if(error.response.data.errors.Password !== undefined){
+              error.response.data.errors.Password.map((item) => 
+              toogleMensagemErro(item))
+            }
+          }
         }
+      }
     }
 
     const toogleMensagemErro =(erro) =>{
@@ -75,7 +75,7 @@ export default function Login(){
             alignItems: "center",
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "#0066A1" }}>
+          <Avatar sx={{ m: 1, bgcolor: "#950000" }}>
             <LockOutlinedIcon
               sx={{
                 position: "relative",
@@ -121,7 +121,7 @@ export default function Login(){
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, color: "#ffffff", backgroundColor: "#0066A1" }}
+              sx={{ mt: 3, mb: 2, color: "#ffffff", backgroundColor: "#950000" }}
             >
               Logar
             </Button>

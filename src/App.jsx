@@ -5,27 +5,24 @@ import Login from './pages/Login/login';
 import NotFound from './pages/NotFound/NotFound';
 import Produto from './pages/Produto/Produto';
 import PrivateRoute from './services/PrivateRoute/PrivateRoute';
+import { Provider } from "./shared/contexts";
+import { Navigate } from 'react-router-dom';
 
 function App() {
-
-  // Faz logout do usuário removendo o token de autenticação do localStorage
-  const logout = () => {
-    localStorage.removeItem('email');
-    localStorage.removeItem('token');
-    localStorage.removeItem('expiration');
-  };
-
   return (
-    <main>
-      <Router>
-          <Routes>
-            <Route exact path="/" element={<PrivateRoute><Home/></PrivateRoute> } />
-            <Route exact path="/produto" element={<Produto/>} />
-            <Route exact path="/login" element={<Login/>} />
-            <Route exact path="*" element={<NotFound/>} />
-        </Routes>
-      </Router>
-    </main>
+    <Provider>
+      <main>
+        <Router>
+            <Routes>
+              <Route path="/" element={<Navigate to="/home" />} />
+              <Route exact path="/home" element={<PrivateRoute><Home/></PrivateRoute>} />
+              <Route exact path="/produto" element={<PrivateRoute><Produto/></PrivateRoute>} />
+              <Route exact path="/login" element={<Login/>} />
+              <Route exact path="*" element={<NotFound/>} />
+          </Routes>
+        </Router>
+      </main>
+    </Provider>
   );
 }
 
