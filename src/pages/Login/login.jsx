@@ -1,5 +1,5 @@
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import  {React, useState} from 'react';
+import  {useState} from 'react';
 import api from '../../services/api/api';
 import { useNavigate } from 'react-router-dom';
 import {
@@ -121,7 +121,11 @@ export default function Login(){
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, color: "#ffffff", backgroundColor: "#950000" }}
+              sx={{ 
+                ':hover': {
+                  bgcolor: '#b96c6c',
+                },
+                mt: 3, mb: 2, color: "#ffffff", backgroundColor: "#950000" }}
             >
               Logar
             </Button>
@@ -140,40 +144,5 @@ export default function Login(){
           </Box>
         </Box>
       </Container>
-
-
-
-
-            /*<>
-              <div>
-                <img style={{display:"flex", margin:"0 auto" }} src="logo-gp.png" alt="logo" />
-              </div>
-              {possuiErro === true ? <Alert severity="error">{mensagemErro}
-              </Alert>: <></>}
-              <FormControl>
-                <FormLabel>Email</FormLabel>
-                <input
-                  // html input attribute
-                  name="email"
-                  type="email"
-                  placeholder="johndoe@email.com"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                />
-              </FormControl>
-              <FormControl>
-                <FormLabel>Password</FormLabel>
-                <input
-                  // html input attribute
-                  name="password"
-                  type="password"
-                  placeholder="password"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                />
-              </FormControl>
-              */
-              //<Button onClick={login} sx={{ mt: 1 /* margin top */ }}>Log in</Button>
-          //</>*/
     );
 }

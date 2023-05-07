@@ -7,6 +7,7 @@ import Produto from './pages/Produto/Produto';
 import PrivateRoute from './services/PrivateRoute/PrivateRoute';
 import { Provider } from "./shared/contexts";
 import { Navigate } from 'react-router-dom';
+import Usuario from './pages/Usuario/Usuario';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Router>
             <Routes>
               <Route path="/" element={<Navigate to="/home" />} />
+              <Route exact path="/usuario" element={<PrivateRoute><Usuario/></PrivateRoute>} />
               <Route exact path="/home" element={<PrivateRoute><Home/></PrivateRoute>} />
               <Route exact path="/produto" element={<PrivateRoute><Produto/></PrivateRoute>} />
               <Route exact path="/login" element={<Login/>} />

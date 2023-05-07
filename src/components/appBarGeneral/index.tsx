@@ -20,49 +20,10 @@ import { useContext } from "../../shared/contexts";
 import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
-const SearchIconWrapper = styled("div")(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: "100%",
-  position: "absolute",
-  pointerEvents: "none",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-}));
-
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha("#950000", 0.8),
-  "&:hover": {
-    backgroundColor: alpha("#950000", 0.99),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
-    width: "auto",
-  },
-}));
 
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-}));
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== "open",
@@ -104,6 +65,15 @@ export default function AppBarGeneral() {
 
   const theme = useTheme();
   const menuId = "primary-search-account-menu";
+  
+  const Navegar = (menu:string) => {
+    handleMenuClose()
+    if(menu === "Perfil")
+      navigate('/perfil')
+    else if(menu === "Usuario")
+      navigate('/usuario')
+  }
+  
   const renderMenu = (
     <Menu
       anchorEl={anchorEl}
@@ -128,9 +98,21 @@ export default function AppBarGeneral() {
             backgroundColor: alpha("#950000", 0.99),
           },
         }}
-        onClick={handleMenuClose}
+        onClick={() => Navegar('Perfil')}
       >
         Perfil
+      </MenuItem>
+      <MenuItem
+        sx={{
+          color: "#950000",
+          "&:hover": {
+            color: "#ffffff",
+            backgroundColor: alpha("#950000", 0.99),
+          },
+        }}
+        onClick={() => Navegar('Usuario')}
+      >
+        Usuários
       </MenuItem>
       <MenuItem
         key="Logout"

@@ -43,9 +43,19 @@ const SideBar: React.FC<PropsAppBar> = (propsAppBar: any) => {
   useEffect(() => {
     setOpen(open);
   }, [open, setOpen]);
+
   const handleDrawerClose = () => {
     setOpen(false);
   };
+
+  const navegar = (menu: string) => {
+    setOpen(false);
+    if(menu === "Home")
+      navigate('/Home')
+    else if(menu === "Produto")
+      navigate('/Produto')
+  };
+  
   return (
     <Box>
       <Drawer
@@ -103,41 +113,46 @@ const SideBar: React.FC<PropsAppBar> = (propsAppBar: any) => {
         <Divider />
         <Paper elevation={24}>
           <List>
-            {["Início", "Meus Cursos", "Perfil", "Sobre o Programa"].map(
-              (text, index) => (
-                <ListItem
-                  sx={{
-                    color: "#950000",
-                    borderRadius: theme.shape.borderRadius,
-                    backgroundColor: alpha("#950000", 0.0),
-                    "&:hover": {
-                      color: "#ffffff",
-                      backgroundColor: alpha("#950000", 0.99),
-                    },
-                  }}
-                  key={text}
-                  disablePadding
-                >
-                  <ListItemButton
-                    onClick={() =>
-                      (text === "Meus Cursos" || text === "Perfil") &&
-                      1 < 0
-                        ? navigate("/login")
-                        : text === "Meus Cursos"
-                        ? navigate("/cursos")
-                        : text === "Perfil"
-                        ? navigate("/perfil")
-                        : navigate("/home")
-                    }
-                  > 
-                    <ListItemIcon>
-                      {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                    </ListItemIcon>
-                    <ListItemText primary={text} />
-                  </ListItemButton>
-                </ListItem>
-              )
-            )}
+            <ListItem
+              sx={{
+                color: "#950000",
+                borderRadius: theme.shape.borderRadius,
+                backgroundColor: alpha("#950000", 0.0),
+                "&:hover": {
+                  color: "#ffffff",
+                  backgroundColor: alpha("#950000", 0.99),
+                },
+              }}
+              disablePadding
+            >
+              <ListItemButton onClick={() => navegar('Home')}>
+                  <ListItemIcon>
+                      <MailIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={"Home"} />
+              </ListItemButton>
+            </ListItem>
+          </List>
+          <List>
+            <ListItem
+              sx={{
+                color: "#950000",
+                borderRadius: theme.shape.borderRadius,
+                backgroundColor: alpha("#950000", 0.0),
+                "&:hover": {
+                  color: "#ffffff",
+                  backgroundColor: alpha("#950000", 0.99),
+                },
+              }}
+              disablePadding
+            >
+              <ListItemButton onClick={() => navegar('Produto')}>
+                  <ListItemIcon>
+                      <MailIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={"Produtos"} />
+              </ListItemButton>
+            </ListItem>
           </List>
         </Paper>
       </Drawer>
